@@ -23,7 +23,7 @@ function formateDate(timestamp) {
 
 function displayTemperature(response) {
   let temperatureElemnt = document.querySelector("#temperature");
-  temperatureElemnt.innerHTML = Math.round(response.data.main.temp);
+  temperatureElemnt.innerHTML = Math.round(celsiusTemperature);
 
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
@@ -46,6 +46,17 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  celsiusTemperature = Math.round(response.data.main.temp);
+}
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
 }
 
 function search(city) {
@@ -59,7 +70,24 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-search("Milan");
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+search("New York");
