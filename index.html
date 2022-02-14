@@ -11,6 +11,10 @@
       crossorigin="anonymous"
     />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css"
+    />
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
@@ -28,11 +32,7 @@
           <div class="row">
             <div class="col-6">
               <div class="clearfix weather-temperature">
-                <img
-                  src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                  alt="Clear"
-                  class="float-left"
-                />
+                <img src="" id="icon" alt="Clear" class="float-left" />
                 <span class="float-left">
                   <strong id="temperature"></strong
                   ><span class="units">°C ~<a href="#">°F</a></span>
