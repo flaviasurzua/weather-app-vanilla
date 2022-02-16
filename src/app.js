@@ -22,6 +22,7 @@ function formateDate(timestamp) {
 }
 
 function displayTemperature(response) {
+  celsiusTemperature = Math.round(response.data.main.temp);
   let temperatureElemnt = document.querySelector("#temperature");
   temperatureElemnt.innerHTML = Math.round(celsiusTemperature);
 
@@ -46,8 +47,6 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
-  celsiusTemperature = Math.round(response.data.main.temp);
 }
 
 function displayFahrenheitTemperature(event) {
